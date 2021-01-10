@@ -1,0 +1,4 @@
+require: rubocop-rspec
+
+RSpec/ImplicitExpect:
+  Enabled: false
