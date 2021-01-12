@@ -28,8 +28,8 @@ FactoryBot.define do
       food { create(:food) }
     end
 
-    user { user.id }
-    food { food.id }
+    user_id { user.id }
+    food_id { food.id }
     score { rand(1..5) }
   end
 end
