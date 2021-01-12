@@ -10,7 +10,7 @@
 #  updated_at :datetime         not null
 #
 class Category < ApplicationRecord
-  has_many :foods, dependent: :destroy
+  has_and_belongs_to_many :foods
 
-  validates :name, presence: true
+  validates_presence_of :name
 end

@@ -30,7 +30,7 @@ class FoodsController < ApplicationController
   private
 
   def food_params
-    params.permit(:title, :description, :category_id)
+    params.permit(:title, :description, :category_id, :user_id)
   end
 
   def set_food

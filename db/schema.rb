@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_11_30_183716) do
+ActiveRecord::Schema.define(version: 2021_01_12_122058) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -21,14 +21,37 @@ ActiveRecord::Schema.define(version: 2020_11_30_183716) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
+  create_table "categories_foods", id: false, force: :cascade do |t|
+    t.bigint "food_id", null: false
+    t.bigint "category_id", null: false
+  end
+
   create_table "foods", force: :cascade do |t|
     t.string "title", null: false
     t.string "description", null: false
-    t.bigint "category_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.index ["category_id"], name: "index_foods_on_category_id"
+    t.integer "user_id", null: false
   end
 
-  add_foreign_key "foods", "categories"
+  create_table "ratings", force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.bigint "food_id", null: false
+    t.integer "score", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["food_id"], name: "index_ratings_on_food_id"
+    t.index ["user_id"], name: "index_ratings_on_user_id"
+  end
+
+  create_table "users", force: :cascade do |t|
+    t.string "name", null: false
+    t.string "email", null: false
+    t.string "password_digest"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  add_foreign_key "ratings", "foods"
+  add_foreign_key "ratings", "users"
 end

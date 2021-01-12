@@ -9,18 +9,14 @@
 #  title       :string           not null
 #  created_at  :datetime         not null
 #  updated_at  :datetime         not null
-#  category_id :bigint           not null
-#
-# Indexes
-#
-#  index_foods_on_category_id  (category_id)
-#
-# Foreign Keys
-#
-#  fk_rails_...  (category_id => categories.id)
+#  user_id     :integer          not null
 #
 class Food < ApplicationRecord
-  belongs_to :category
+  has_and_belongs_to_many :categories
 
-  validates :title, :description, presence: true
+  belongs_to :user
+
+  has_many :ratings
+
+  validates_presence_of :title, :description
 end

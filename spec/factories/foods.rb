@@ -9,24 +9,16 @@
 #  title       :string           not null
 #  created_at  :datetime         not null
 #  updated_at  :datetime         not null
-#  category_id :bigint           not null
-#
-# Indexes
-#
-#  index_foods_on_category_id  (category_id)
-#
-# Foreign Keys
-#
-#  fk_rails_...  (category_id => categories.id)
+#  user_id     :integer          not null
 #
 FactoryBot.define do
   factory :food do
     transient do
-      category { create(:category) }
+      user { create(:user) }
     end
 
     title { Faker::Food.dish }
     description { Faker::Food.description }
-    category_id { category.id }
+    user_id { user.id }
   end
 end
