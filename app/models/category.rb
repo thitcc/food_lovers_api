@@ -12,5 +12,5 @@
 class Category < ApplicationRecord
   has_and_belongs_to_many :foods
 
-  validates_presence_of :name
+  validates :name, presence: true
 end

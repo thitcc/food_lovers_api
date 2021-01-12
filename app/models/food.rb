@@ -18,5 +18,5 @@ class Food < ApplicationRecord
 
   has_many :ratings
 
-  validates_presence_of :title, :description
+  validates :title, :description, presence: true
 end

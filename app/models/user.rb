@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # == Schema Information
 #
 # Table name: users
@@ -15,5 +17,5 @@ class User < ApplicationRecord
   has_many :ratings, dependent: :destroy
   has_many :foods, dependent: :destroy
 
-  validates_presence_of :email, :name
+  validates :email, :name, presence: true
 end
