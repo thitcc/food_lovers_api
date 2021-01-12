@@ -16,7 +16,7 @@ class Food < ApplicationRecord
 
   belongs_to :user
 
-  has_many :ratings
+  has_many :ratings, dependent: :destroy
 
   validates :title, :description, presence: true
 end
